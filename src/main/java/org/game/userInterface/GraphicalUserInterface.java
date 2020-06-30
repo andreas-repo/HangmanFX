@@ -43,6 +43,7 @@ public class GraphicalUserInterface extends Application {
         gridExtraControlls.setHgap(10);
         gridExtraControlls.setVgap(10);
         gridExtraControlls.setPadding(new Insets(25, 25, 25, 25));
+        gridExtraControlls.getStylesheets().add(getClass().getResource("extraControlStyling.css").toString());
 
 
 
@@ -157,8 +158,8 @@ public class GraphicalUserInterface extends Application {
         gridPane.add(grid, 0, 3);
         gridPane.add(gridExtraControlls, 0,4);
 
-        gridExtraControlls.setGridLinesVisible(true);
-        grid.setGridLinesVisible(true);
+        //gridExtraControlls.setGridLinesVisible(true);
+        //grid.setGridLinesVisible(true);
         //gridPane.setGridLinesVisible(true);
 
         Scene scene = new Scene(gridPane, 200, 330);
