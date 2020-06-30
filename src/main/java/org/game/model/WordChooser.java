@@ -17,6 +17,10 @@ public class WordChooser {
 
     private String chosenWord;
 
+    public WordChooser() {
+        chooseWord();
+    }
+
     public void chooseWord() {
         Random random = new Random();
 
