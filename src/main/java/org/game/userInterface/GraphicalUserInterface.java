@@ -3,10 +3,12 @@ package org.game.userInterface;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -14,6 +16,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.game.model.HangmanGame;
+
+import java.util.Arrays;
 
 
 public class GraphicalUserInterface extends Application {
@@ -34,6 +38,11 @@ public class GraphicalUserInterface extends Application {
 
         //GridPan for interaction with player
         GridPane grid = new GridPane();
+        GridPane gridExtraControlls = new GridPane();
+        gridExtraControlls.setAlignment(Pos.CENTER);
+        gridExtraControlls.setHgap(10);
+        gridExtraControlls.setVgap(10);
+        gridExtraControlls.setPadding(new Insets(25, 25, 25, 25));
 
 
 
@@ -62,14 +71,24 @@ public class GraphicalUserInterface extends Application {
         hbAnswerText.getChildren().add(answerText);
         hbAnswerText.setMaxWidth(140);
         hbAnswerText.setMinWidth(140);
-        grid.add(hbAnswerText, 0, 2);
+        grid.add(hbAnswerText, 0, 3);
 
-        Button button = new Button("Change");
+        Button button = new Button("Try it!");
         button.setId("button");
         HBox hbButton = new HBox(10);
         hbButton.setAlignment(Pos.CENTER);
         hbButton.getChildren().add(button);
-        grid.add(hbButton, 3, 2);
+        grid.add(hbButton, 3, 3);
+
+
+        Button tippButton = new Button("Tipp!");
+        tippButton.setId("tippButton");
+        HBox hbTippButton = new HBox(10);
+        hbTippButton.setAlignment(Pos.BOTTOM_LEFT);
+        hbTippButton.getChildren().add(tippButton);
+        gridExtraControlls.add(hbTippButton, 0, 0);
+
+
 
 
 
@@ -115,6 +134,20 @@ public class GraphicalUserInterface extends Application {
             }
         });
 
+        tippButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                String[] indexedWord = GraphicalUserInterface.this.hangmanGame.getIndexedWord();
+                String firstLetter = indexedWord[0];
+                String[] indexedObliteratedWord = GraphicalUserInterface.this.hangmanGame.getIndexedObliteratedWord();
+                indexedObliteratedWord[0] = firstLetter;
+
+                GraphicalUserInterface.this.hangmanGame.setIndexedObliteratedWord(indexedObliteratedWord);
+                GraphicalUserInterface.this.hangmanGame.setObliteratedWord(Arrays.toString(indexedObliteratedWord));
+                questionText.setText(GraphicalUserInterface.this.hangmanGame.getObliteratedWord());
+            }
+        });
+
 
 
 
@@ -122,11 +155,13 @@ public class GraphicalUserInterface extends Application {
         GridPane gridPane = new GridPane();
         gridPane.add(hBox, 0, 1);
         gridPane.add(grid, 0, 3);
+        gridPane.add(gridExtraControlls, 0,4);
 
-        //grid.setGridLinesVisible(true);
-        gridPane.setGridLinesVisible(true);
+        gridExtraControlls.setGridLinesVisible(true);
+        grid.setGridLinesVisible(true);
+        //gridPane.setGridLinesVisible(true);
 
-        Scene scene = new Scene(gridPane, 200, 400);
+        Scene scene = new Scene(gridPane, 200, 330);
         primaryStage.setScene(scene);
         primaryStage.setTitle("HangmanFX");
         primaryStage.show();
