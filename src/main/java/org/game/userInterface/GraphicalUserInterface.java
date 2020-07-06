@@ -8,8 +8,8 @@ import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -18,6 +18,9 @@ import javafx.stage.Stage;
 import org.game.model.HangmanGame;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 public class GraphicalUserInterface extends Application {
@@ -26,6 +29,7 @@ public class GraphicalUserInterface extends Application {
     private int counter = 1;
     private ImageView imageView;
     private String[] game = new String[this.hangmanGame.getWord().length()];
+    private Set<String> listOfGuesses;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -43,10 +47,12 @@ public class GraphicalUserInterface extends Application {
         gridExtraControlls.setHgap(10);
         gridExtraControlls.setVgap(10);
         gridExtraControlls.setPadding(new Insets(25, 25, 25, 25));
-        gridExtraControlls.getStylesheets().add(getClass().getResource("extraControlStyling.css").toString());
+        gridExtraControlls.getStylesheets().add("extraControlStyling.css");
 
+        //create the list of the already guessed letters
+        this.listOfGuesses = new HashSet<>();
 
-
+        //Textfield for the word
         TextField questionText = new TextField(this.hangmanGame.getObliteratedWord());
         questionText.setId("questionTest");
         questionText.setAlignment(Pos.CENTER);
@@ -56,6 +62,7 @@ public class GraphicalUserInterface extends Application {
         hbQuestionText.getChildren().add(questionText);
         grid.add(hbQuestionText, 0, 0, 4, 1);
 
+        //Seperator to sperate questionText and answerText
         Separator separator = new Separator();
         separator.setOrientation(Orientation.VERTICAL);
         separator.setVisible(false);
@@ -64,6 +71,7 @@ public class GraphicalUserInterface extends Application {
         hbSeperator.getChildren().add(separator);
         grid.add(hbSeperator, 0, 1);
 
+        //textfield for the letter or the whole word you guess
         TextField answerText = new TextField();
         answerText.setId("answerText");
         answerText.setAlignment(Pos.CENTER);
@@ -74,6 +82,7 @@ public class GraphicalUserInterface extends Application {
         hbAnswerText.setMinWidth(140);
         grid.add(hbAnswerText, 0, 3);
 
+        //Button to try if your guess is true
         Button button = new Button("Try it!");
         button.setId("button");
         HBox hbButton = new HBox(10);
@@ -81,18 +90,24 @@ public class GraphicalUserInterface extends Application {
         hbButton.getChildren().add(button);
         grid.add(hbButton, 3, 3);
 
-
+        //Button to uncover the first letter
         Button tippButton = new Button("Tipp!");
         tippButton.setId("tippButton");
         HBox hbTippButton = new HBox(10);
-        hbTippButton.setAlignment(Pos.BOTTOM_LEFT);
+        hbTippButton.setAlignment(Pos.CENTER);
         hbTippButton.getChildren().add(tippButton);
         gridExtraControlls.add(hbTippButton, 0, 0);
 
+        //textarea for already guessed letters
+        TextArea listOfGuessesTextArea = new TextArea(listOfGuesses.toString());
+        listOfGuessesTextArea.setId("listOfGuessesTextArea");
+        listOfGuessesTextArea.setWrapText(true);
+        HBox hbListOfGuessesTextArea = new HBox(10);
+        hbListOfGuessesTextArea.setAlignment(Pos.CENTER);
+        hbListOfGuessesTextArea.getChildren().add(listOfGuessesTextArea);
+        gridExtraControlls.add(hbListOfGuessesTextArea, 0, 1);
 
-
-
-
+        //actions for the "try your guess" button
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -108,8 +123,11 @@ public class GraphicalUserInterface extends Application {
                     GraphicalUserInterface.this.hangmanGame.newWord();
                     answerText.setText("");
                     questionText.setText(GraphicalUserInterface.this.hangmanGame.getObliteratedWord());
+                    GraphicalUserInterface.this.listOfGuesses = new HashSet<>();
                 } else if(result) {
                     questionText.setText(GraphicalUserInterface.this.hangmanGame.getObliteratedWord().toString());
+                    GraphicalUserInterface.this.listOfGuesses.add(answer);
+                    listOfGuessesTextArea.setText(GraphicalUserInterface.this.listOfGuesses.toString());
                 } else if(!answer.equals("")){
                     switch (counter) {
                         case 0: imageGrabber.setStartImage();   break;
@@ -124,17 +142,26 @@ public class GraphicalUserInterface extends Application {
                         case 9: imageGrabber.setNinthImage();   break;
                         case 10: imageGrabber.setTenthImage();  break;
                         case 11: imageGrabber.setEleventhImage();   break;
-                        case 12: imageGrabber.setTwelveImage(); counter = -1;   GraphicalUserInterface.this.hangmanGame.newWord();  answerText.setText(""); questionText.setText(GraphicalUserInterface.this.hangmanGame.getObliteratedWord()); break;
+                        case 12: imageGrabber.setTwelveImage(); counter = -1;   GraphicalUserInterface.this.hangmanGame.newWord();  answerText.setText(""); questionText.setText(GraphicalUserInterface.this.hangmanGame.getObliteratedWord());  break;
                     }
                     hBox.getChildren().remove(GraphicalUserInterface.this.imageView);
                     ImageView imageView2 = new ImageView(imageGrabber.getImage());
                     hBox.getChildren().add(imageView2);
                     GraphicalUserInterface.this.imageView = imageView2;
+                    if(counter == 12) {
+                        GraphicalUserInterface.this.listOfGuesses = new HashSet<>();
+                        listOfGuessesTextArea.setText(null);
+                    } else {
+                        GraphicalUserInterface.this.listOfGuesses.add(answer);
+                        listOfGuessesTextArea.setText(GraphicalUserInterface.this.listOfGuesses.toString());
+                    }
                     counter++;
+
                 }
             }
         });
 
+        //action for the tipp button
         tippButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -146,11 +173,11 @@ public class GraphicalUserInterface extends Application {
                 GraphicalUserInterface.this.hangmanGame.setIndexedObliteratedWord(indexedObliteratedWord);
                 GraphicalUserInterface.this.hangmanGame.setObliteratedWord(Arrays.toString(indexedObliteratedWord));
                 questionText.setText(GraphicalUserInterface.this.hangmanGame.getObliteratedWord());
+
+                GraphicalUserInterface.this.listOfGuesses.add(firstLetter);
+                listOfGuessesTextArea.setText(GraphicalUserInterface.this.listOfGuesses.toString());
             }
         });
-
-
-
 
 
         GridPane gridPane = new GridPane();
@@ -162,7 +189,7 @@ public class GraphicalUserInterface extends Application {
         //grid.setGridLinesVisible(true);
         //gridPane.setGridLinesVisible(true);
 
-        Scene scene = new Scene(gridPane, 200, 330);
+        Scene scene = new Scene(gridPane, 200, 390);
         primaryStage.setScene(scene);
         primaryStage.setTitle("HangmanFX");
         primaryStage.show();
