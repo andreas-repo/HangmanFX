@@ -19,7 +19,6 @@ import org.game.model.HangmanGame;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -47,7 +46,7 @@ public class GraphicalUserInterface extends Application {
         gridExtraControlls.setHgap(10);
         gridExtraControlls.setVgap(10);
         gridExtraControlls.setPadding(new Insets(25, 25, 25, 25));
-        gridExtraControlls.getStylesheets().add("extraControlStyling.css");
+        gridExtraControlls.getStylesheets().add("styling.css");
 
         //create the list of the already guessed letters
         this.listOfGuesses = new HashSet<>();
