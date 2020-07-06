@@ -123,6 +123,8 @@ public class GraphicalUserInterface extends Application {
                     answerText.setText("");
                     questionText.setText(GraphicalUserInterface.this.hangmanGame.getObliteratedWord());
                     GraphicalUserInterface.this.listOfGuesses = new HashSet<>();
+                } else if (GraphicalUserInterface.this.listOfGuesses.contains(answer)) {
+
                 } else if(result) {
                     questionText.setText(GraphicalUserInterface.this.hangmanGame.getObliteratedWord().toString());
                     GraphicalUserInterface.this.listOfGuesses.add(answer);
@@ -141,21 +143,21 @@ public class GraphicalUserInterface extends Application {
                         case 9: imageGrabber.setNinthImage();   break;
                         case 10: imageGrabber.setTenthImage();  break;
                         case 11: imageGrabber.setEleventhImage();   break;
-                        case 12: imageGrabber.setTwelveImage(); counter = -1;   GraphicalUserInterface.this.hangmanGame.newWord();  answerText.setText(""); questionText.setText(GraphicalUserInterface.this.hangmanGame.getObliteratedWord());  break;
+                        case 12: imageGrabber.setTwelveImage();  GraphicalUserInterface.this.hangmanGame.newWord();  answerText.setText(""); questionText.setText(GraphicalUserInterface.this.hangmanGame.getObliteratedWord());  break;
                     }
                     hBox.getChildren().remove(GraphicalUserInterface.this.imageView);
                     ImageView imageView2 = new ImageView(imageGrabber.getImage());
                     hBox.getChildren().add(imageView2);
                     GraphicalUserInterface.this.imageView = imageView2;
-                    if(counter == 12) {
+                    if(counter >= 12) {
                         GraphicalUserInterface.this.listOfGuesses = new HashSet<>();
-                        listOfGuessesTextArea.setText(null);
+                        listOfGuessesTextArea.setText(GraphicalUserInterface.this.listOfGuesses.toString());
+                        counter = -1;
                     } else {
                         GraphicalUserInterface.this.listOfGuesses.add(answer);
                         listOfGuessesTextArea.setText(GraphicalUserInterface.this.listOfGuesses.toString());
                     }
                     counter++;
-
                 }
             }
         });
