@@ -98,7 +98,7 @@ public class GraphicalUserInterface extends Application {
         gridExtraControlls.add(hbTippButton, 0, 0);
 
         //textarea for already guessed letters
-        TextArea listOfGuessesTextArea = new TextArea(listOfGuesses.toString());
+        TextArea listOfGuessesTextArea = new TextArea(listOfGuesses.toString().replaceAll("\\[\\]", ""));
         listOfGuessesTextArea.setId("listOfGuessesTextArea");
         listOfGuessesTextArea.setWrapText(true);
         HBox hbListOfGuessesTextArea = new HBox(10);
@@ -128,7 +128,7 @@ public class GraphicalUserInterface extends Application {
                 } else if(result) {
                     questionText.setText(GraphicalUserInterface.this.hangmanGame.getObliteratedWord().toString());
                     GraphicalUserInterface.this.listOfGuesses.add(answer);
-                    listOfGuessesTextArea.setText(GraphicalUserInterface.this.listOfGuesses.toString());
+                    listOfGuessesTextArea.setText(GraphicalUserInterface.this.listOfGuesses.toString().replaceAll("^\\[", "").replaceAll("\\]", ""));
                 } else if(!answer.equals("")){
                     switch (counter) {
                         case 0: imageGrabber.setStartImage();   break;
@@ -151,11 +151,11 @@ public class GraphicalUserInterface extends Application {
                     GraphicalUserInterface.this.imageView = imageView2;
                     if(counter >= 12) {
                         GraphicalUserInterface.this.listOfGuesses = new HashSet<>();
-                        listOfGuessesTextArea.setText(GraphicalUserInterface.this.listOfGuesses.toString());
+                        listOfGuessesTextArea.setText(GraphicalUserInterface.this.listOfGuesses.toString().replaceAll("^\\[", "").replaceAll("\\]", ""));
                         counter = -1;
                     } else {
                         GraphicalUserInterface.this.listOfGuesses.add(answer);
-                        listOfGuessesTextArea.setText(GraphicalUserInterface.this.listOfGuesses.toString());
+                        listOfGuessesTextArea.setText(GraphicalUserInterface.this.listOfGuesses.toString().replaceAll("^\\[", "").replaceAll("\\]", ""));
                     }
                     counter++;
                 }
@@ -176,7 +176,7 @@ public class GraphicalUserInterface extends Application {
                 questionText.setText(GraphicalUserInterface.this.hangmanGame.getObliteratedWord());
 
                 GraphicalUserInterface.this.listOfGuesses.add(firstLetter);
-                listOfGuessesTextArea.setText(GraphicalUserInterface.this.listOfGuesses.toString());
+                listOfGuessesTextArea.setText(GraphicalUserInterface.this.listOfGuesses.toString().replaceAll("^\\[", ""));
             }
         });
 
