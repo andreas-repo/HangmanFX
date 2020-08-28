@@ -1,8 +1,12 @@
 package org.game.model;
 
+import org.game.userInterface.ImageGrabber;
+
 import java.util.Arrays;
 
+
 public class HangmanGame {
+
     private WordChooser wordChooser;
     private String word;
     private String obliteratedWord;
@@ -13,6 +17,7 @@ public class HangmanGame {
     public HangmanGame() {
         this.wordChooser = new WordChooser();
         obliteratedWord();
+
     }
 
 

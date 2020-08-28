@@ -15,6 +15,7 @@ public class WordChooser {
 
     final Logger logger = Logger.getLogger(WordChooser.class.getName());
 
+
     private String chosenWord;
 
     public WordChooser() {
@@ -24,7 +25,7 @@ public class WordChooser {
     public void chooseWord() {
         Random random = new Random();
 
-        try(Stream<String> all_lines = Files.lines(Paths.get("C:\\Users\\andre\\Development\\Example Code\\HangmanFX\\src\\main\\resources\\hangman-wordlist.txt"))) {
+        try(Stream<String> allLines = Files.lines(Paths.get("C:\\Users\\andre\\Development\\Example Code\\HangmanFX\\src\\main\\resources\\hangman-wordlist.txt"))) {
             BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\andre\\Development\\Example Code\\HangmanFX\\src\\main\\resources\\hangman-wordlist.txt"));
             int lines = 0;
             while (reader.readLine() != null) lines++;
@@ -32,7 +33,9 @@ public class WordChooser {
 
             int randomLine = random.nextInt(lines);
 
-            chosenWord = all_lines.skip(randomLine-1).findFirst().get();
+            chosenWord = allLines.skip(randomLine-1).findFirst().isPresent().get();
+
+            reader.close();
 
         } catch (IOException e) {
             logger.log(Level.INFO, "IOException got thrown in WordChooser.");

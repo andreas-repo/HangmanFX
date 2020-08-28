@@ -124,7 +124,7 @@ public class GraphicalUserInterface extends Application {
                     questionText.setText(GraphicalUserInterface.this.hangmanGame.getObliteratedWord());
                     GraphicalUserInterface.this.listOfGuesses = new HashSet<>();
                 } else if (GraphicalUserInterface.this.listOfGuesses.contains(answer)) {
-
+                    //no punishment for already guessed leteters
                 } else if(result) {
                     questionText.setText(GraphicalUserInterface.this.hangmanGame.getObliteratedWord().toString());
                     GraphicalUserInterface.this.listOfGuesses.add(answer);
@@ -191,6 +191,7 @@ public class GraphicalUserInterface extends Application {
         //gridPane.setGridLinesVisible(true);
 
         Scene scene = new Scene(gridPane, 200, 390);
+        scene.getStylesheets().add("styling.css");
         primaryStage.setScene(scene);
         primaryStage.setTitle("HangmanFX");
         primaryStage.show();
