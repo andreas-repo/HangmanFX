@@ -1,0 +1,9 @@
+
+h
+java:S2095"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(æþÇ08Š¢»¯Ã.
+`
+java:S2184$"CCast one of the operands of this subtraction operation to a "long".(¦½õ±8Š¢»¯Ã.
+:
+java:S2119"Save and re-use this "Random".(¼ÝÅf8Š¢»¯Ã.
+i
+java:S2677"LUse or store the value returned from "readLine" instead of throwing it away.(ÆÒµ±8Š¢»¯Ã.

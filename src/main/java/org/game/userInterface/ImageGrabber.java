@@ -14,7 +14,7 @@ public class ImageGrabber {
 
     public void setStartImage() {
         try {
-            FileInputStream input = new FileInputStream("C:\\Users\\andre\\Development\\Example Code\\HangmanFX\\src\\main\\resources\\images\\startImage.jpg");
+            FileInputStream input = new FileInputStream("src/main/resources/images/startImage.jpg");
             this.image = new Image(input);
         }catch (IOException e) {
             logger.log(Level.INFO, "IOException got thrown in ImageGrabber.");
@@ -23,7 +23,7 @@ public class ImageGrabber {
 
     public void setFirstImage() {
         try {
-            FileInputStream input = new FileInputStream("C:\\Users\\andre\\Development\\Example Code\\HangmanFX\\src\\main\\resources\\images\\firstImage.jpg");
+            FileInputStream input = new FileInputStream("src/main/resources/images/firstImage.jpg");
             this.image = new Image(input);
 
         }catch (IOException e) {
@@ -33,7 +33,7 @@ public class ImageGrabber {
 
     public void setSecondImage() {
         try {
-            FileInputStream input = new FileInputStream("C:\\Users\\andre\\Development\\Example Code\\HangmanFX\\src\\main\\resources\\images\\secondImage.jpg");
+            FileInputStream input = new FileInputStream("src/main/resources/images/secondImage.jpg");
             this.image = new Image(input);
 
         }catch (IOException e) {
@@ -43,7 +43,7 @@ public class ImageGrabber {
 
     public void setThirdImage() {
         try {
-            FileInputStream input = new FileInputStream("C:\\Users\\andre\\Development\\Example Code\\HangmanFX\\src\\main\\resources\\images\\thirdImage.jpg");
+            FileInputStream input = new FileInputStream("src/main/resources/images/thirdImage.jpg");
             this.image = new Image(input);
 
         }catch (IOException e) {
@@ -53,7 +53,7 @@ public class ImageGrabber {
 
     public void setFourthImage() {
         try {
-            FileInputStream input = new FileInputStream("C:\\Users\\andre\\Development\\Example Code\\HangmanFX\\src\\main\\resources\\images\\fourthImage.jpg");
+            FileInputStream input = new FileInputStream("src/main/resources/images/fourthImage.jpg");
             this.image = new Image(input);
 
         }catch (IOException e) {
@@ -63,7 +63,7 @@ public class ImageGrabber {
 
     public void setFifthImage() {
         try {
-            FileInputStream input = new FileInputStream("C:\\Users\\andre\\Development\\Example Code\\HangmanFX\\src\\main\\resources\\images\\fifthImage.jpg");
+            FileInputStream input = new FileInputStream("src/main/resources/images/fifthImage.jpg");
             this.image = new Image(input);
 
         }catch (IOException e) {
@@ -73,7 +73,7 @@ public class ImageGrabber {
 
     public void setSixthImage() {
         try {
-            FileInputStream input = new FileInputStream("C:\\Users\\andre\\Development\\Example Code\\HangmanFX\\src\\main\\resources\\images\\sixthImage.jpg");
+            FileInputStream input = new FileInputStream("src/main/resources/images/sixthImage.jpg");
             this.image = new Image(input);
 
         }catch (IOException e) {
@@ -83,7 +83,7 @@ public class ImageGrabber {
 
     public void setSeventhImage() {
         try {
-            FileInputStream input = new FileInputStream("C:\\Users\\andre\\Development\\Example Code\\HangmanFX\\src\\main\\resources\\images\\seventhImage.jpg");
+            FileInputStream input = new FileInputStream("src/main/resources/images/seventhImage.jpg");
             this.image = new Image(input);
 
         }catch (IOException e) {
@@ -93,7 +93,7 @@ public class ImageGrabber {
 
     public void setEighthImage() {
         try {
-            FileInputStream input = new FileInputStream("C:\\Users\\andre\\Development\\Example Code\\HangmanFX\\src\\main\\resources\\images\\eighthImage.jpg");
+            FileInputStream input = new FileInputStream("src/main/resources/images/eighthImage.jpg");
             this.image = new Image(input);
 
         }catch (IOException e) {
@@ -103,7 +103,7 @@ public class ImageGrabber {
 
     public void setNinthImage() {
         try {
-            FileInputStream input = new FileInputStream("C:\\Users\\andre\\Development\\Example Code\\HangmanFX\\src\\main\\resources\\images\\ninthImage.jpg");
+            FileInputStream input = new FileInputStream("src/main/resources/images/ninthImage.jpg");
             this.image = new Image(input);
 
         }catch (IOException e) {
@@ -113,7 +113,7 @@ public class ImageGrabber {
 
     public void setTenthImage() {
         try {
-            FileInputStream input = new FileInputStream("C:\\Users\\andre\\Development\\Example Code\\HangmanFX\\src\\main\\resources\\images\\tenthImage.jpg");
+            FileInputStream input = new FileInputStream("src/main/resources/images/tenthImage.jpg");
             this.image = new Image(input);
 
         }catch (IOException e) {
@@ -123,7 +123,7 @@ public class ImageGrabber {
 
     public void setEleventhImage() {
         try {
-            FileInputStream input = new FileInputStream("C:\\Users\\andre\\Development\\Example Code\\HangmanFX\\src\\main\\resources\\images\\eleventhImage.jpg");
+            FileInputStream input = new FileInputStream("src/main/resources/images/eleventhImage.jpg");
             this.image = new Image(input);
 
         }catch (IOException e) {
@@ -133,7 +133,7 @@ public class ImageGrabber {
 
     public void setTwelveImage() {
         try {
-            FileInputStream input = new FileInputStream("C:\\Users\\andre\\Development\\Example Code\\HangmanFX\\src\\main\\resources\\images\\twelfthImage.jpg");
+            FileInputStream input = new FileInputStream("src/main/resources/images/twelfthImage.jpg");
             this.image = new Image(input);
 
         }catch (IOException e) {
@@ -143,7 +143,7 @@ public class ImageGrabber {
 
     public void setWinImage() {
         try {
-            FileInputStream input = new FileInputStream("C:\\Users\\andre\\Development\\Example Code\\HangmanFX\\src\\main\\resources\\images\\winScreen.jpg");
+            FileInputStream input = new FileInputStream("src/main/resources/images/winScreen.jpg");
             this.image = new Image(input);
 
         }catch (IOException e) {

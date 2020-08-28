@@ -25,17 +25,16 @@ public class WordChooser {
     public void chooseWord() {
         Random random = new Random();
 
-        try(Stream<String> allLines = Files.lines(Paths.get("C:\\Users\\andre\\Development\\Example Code\\HangmanFX\\src\\main\\resources\\hangman-wordlist.txt"))) {
-            BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\andre\\Development\\Example Code\\HangmanFX\\src\\main\\resources\\hangman-wordlist.txt"));
+        try(Stream<String> allLines = Files.lines(Paths.get("src/main/resources/hangman-wordlist.txt"))) {
+            BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/hangman-wordlist.txt"));
             int lines = 0;
             while (reader.readLine() != null) lines++;
             reader.close();
 
             int randomLine = random.nextInt(lines);
 
-            chosenWord = allLines.skip(randomLine-1).findFirst().isPresent().get();
+            chosenWord = allLines.skip(randomLine-1).findFirst().get();
 
-            reader.close();
 
         } catch (IOException e) {
             logger.log(Level.INFO, "IOException got thrown in WordChooser.");

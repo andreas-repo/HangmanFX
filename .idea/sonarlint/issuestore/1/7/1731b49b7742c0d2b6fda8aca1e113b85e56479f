@@ -1,0 +1,10 @@
+
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÜãÑÁúÿÿÿÿ8âĞµ¯Ã.
+J
+java:S1604n"(Make this anonymous inner class a lambda(Œ¸ä“üÿÿÿÿ8âĞµ¯Ã.
+H
+java:S1604"(Make this anonymous inner class a lambda(ÑÆ·ıúÿÿÿÿ8âĞµ¯Ã.
+l
+java:S1858"L"getObliteratedWord" returns a string, there's no need to call "toString()".(ÚèÓ’øÿÿÿÿ8âĞµ¯Ã.
+<	java:S131""Add a default case to this switch.(¾Ÿ8âĞµ¯Ã.
+V	java:S125"<This block of commented-out lines of code should be removed.(Å¼ÌÒ8âĞµ¯Ã.
